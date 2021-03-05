@@ -3,9 +3,13 @@ using redd096;
 
 public class Player : StateMachine
 {
+    [Header("Force")]
+    [SerializeField] float[] possibleForces = default;
+
     public Camera cam {get; private set;}
     public System.Action<Vector2, Vector2> updateLine { get; set; }
     public System.Action stopLine { get; set; }
+    public System.Action onDead { get; set; }
 
     void Awake()
     {
@@ -17,6 +21,10 @@ public class Player : StateMachine
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        //exit from floor, end level
+        //exit from floor, call end event
+        onDead?.Invoke();
+
+        //call end level
+        GameManager.instance.levelManager.EndLevel(false);
     }
 }

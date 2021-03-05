@@ -1,11 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using redd096;
 
 public class PlayerGraphics : MonoBehaviour
 {
     [Header("Line Prefab")]
     [SerializeField] LineRenderer linePrefab = default;
+
+    [Header("Death Animation")]
+    [SerializeField] bool stopRigidbody = false;
+    [SerializeField] float durationDeath = 2;
 
     Player player;
     LineRenderer line;
@@ -22,6 +26,7 @@ public class PlayerGraphics : MonoBehaviour
         //add events
         player.updateLine += UpdateLine;
         player.stopLine += StopLine;
+        player.onDead += OnDead;
     }
 
     private void OnDisable()
@@ -29,6 +34,7 @@ public class PlayerGraphics : MonoBehaviour
         //remove events
         player.updateLine -= UpdateLine;
         player.stopLine -= StopLine;
+        player.onDead -= OnDead;
     }
 
     void UpdateLine(Vector2 startPosition, Vector2 endPosition)
@@ -38,7 +44,7 @@ public class PlayerGraphics : MonoBehaviour
 
         //set vars
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, -1);
-        Vector3 direction = endPosition - startPosition;
+        Vector3 direction = startPosition - endPosition;
 
         //from transform position, to direction
         line.SetPosition(0, playerPosition);
@@ -49,5 +55,36 @@ public class PlayerGraphics : MonoBehaviour
     {
         //remove line positions
         line.positionCount = 0;
+    }
+
+    void OnDead()
+    {
+        //stop rigidbody
+        if (stopRigidbody)
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        //start coroutine
+        StartCoroutine(DeathAnimation());
+    }
+
+    IEnumerator DeathAnimation()
+    {
+        //set vars
+        Vector3 startScale = transform.localScale;
+
+        //animation
+        float delta = 0;
+        while(delta < 1)
+        {
+            delta += Time.deltaTime / durationDeath;
+
+            //set scale
+            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, delta);
+
+            yield return null;
+        }
+
+        //destroy
+        Pooling.Destroy(gameObject);
     }
 }

@@ -522,8 +522,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1478946133}
-  - component: {fileID: 1478946132}
   - component: {fileID: 1478946131}
+  - component: {fileID: 1478946132}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -559,12 +559,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1478946130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d01be175817434bba3b6e4cf49bf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  startMenu: {fileID: 0}
+  firstSelectedGameObjects:
+  - {fileID: 1974858742}
+  overrideObjects: []
+  notNavigables: []
 --- !u!4 &1478946133
 Transform:
   m_ObjectHideFlags: 0

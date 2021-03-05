@@ -11,12 +11,14 @@
 
         public UIManager uiManager { get; private set; }
         public Player player { get; private set; }
+        public LevelManager levelManager { get; private set; }
 
         protected override void SetDefaults()
         {
             //get references
             uiManager = FindObjectOfType<UIManager>();
             player = FindObjectOfType<Player>();
+            levelManager = FindObjectOfType<LevelManager>();
         }
 
         private void Update()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3666208210898537819}
   - component: {fileID: 1580484404397289107}
   - component: {fileID: 245331698465228534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +81,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 5652493853238893894, guid: ab95486946bfdce4ba74d6518cbeb74b,
     type: 3}
+  speedRotation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  durationDeath: 2
 --- !u!1 &3666208211192590649
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3666208211192590648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +148,7 @@ GameObject:
   - component: {fileID: 3666208211985172467}
   - component: {fileID: 3666208211985172465}
   - component: {fileID: 576689708426752899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

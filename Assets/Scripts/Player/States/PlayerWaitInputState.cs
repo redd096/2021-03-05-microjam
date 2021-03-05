@@ -21,7 +21,7 @@ public class PlayerWaitInputState : State
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //check if hit player
-            RaycastHit2D hit = Physics2D.GetRayIntersection(player.cam.ScreenPointToRay(Input.mousePosition));
+            RaycastHit2D hit = Physics2D.GetRayIntersection(player.cam.ScreenPointToRay(Input.mousePosition), 10, CreateLayer.LayerOnly("Player"));
             if (hit && hit.transform.GetComponentInParent<Player>())
             {
                 StartAim(hit.point);
