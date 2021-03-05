@@ -3,6 +3,7 @@ using redd096;
 
 public class MovingState : State
 {
+    Player player;
     Rigidbody2D rb;
     Vector2 startPosition;
     Vector2 endPosition;
@@ -19,11 +20,12 @@ public class MovingState : State
         base.Enter();
 
         //get references
+        player = stateMachine as Player;
         rb = stateMachine.GetComponent<Rigidbody2D>();
 
         //add force
-        Vector2 velocity = startPosition - endPosition;
-        rb.AddForce(velocity, ForceMode2D.Impulse);
+        Vector2 direction = (startPosition - endPosition).normalized;
+        rb.velocity = direction * player.GetForce(startPosition, endPosition).force;    //direction * force
     }
 
     public override void FixedUpdate()

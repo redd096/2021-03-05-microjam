@@ -32,6 +32,7 @@ public class PlayerWaitInputState : State
     void StartAim(Vector2 startPosition)
     {
         //start Aim
+        //stateMachine.SetState(new PlayerAimState(startPosition));
         stateMachine.SetState(new PlayerAimState(stateMachine.transform.position));
     }
 }

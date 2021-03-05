@@ -43,12 +43,17 @@ public class PlayerGraphics : MonoBehaviour
         line.positionCount = 2;
 
         //set vars
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, -1);
-        Vector3 direction = startPosition - endPosition;
+        Vector3 velocity = startPosition - endPosition;
+
+        //set color line and size
+        ForceStruct forceStruct = player.GetForce(startPosition, endPosition);
+        line.colorGradient = forceStruct.colorLine;
+        line.startWidth = forceStruct.size;
+        line.endWidth = forceStruct.size;
 
         //from transform position, to direction
-        line.SetPosition(0, playerPosition);
-        line.SetPosition(1, playerPosition + (direction.normalized * direction.magnitude));
+        line.SetPosition(0, startPosition);
+        line.SetPosition(1, endPosition);
     }
 
     void StopLine()
