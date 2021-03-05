@@ -33,6 +33,24 @@ public class PlayerAimState : State
     {
         base.Update();
 
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (Input.touchCount <= 0)
+            return;
+
+        Touch touch = Input.GetTouch(0);
+
+        //get touch position
+        endPosition = player.cam.ScreenToWorldPoint(touch.position);
+
+        //update line renderer
+        player.updateLine?.Invoke(startPosition, endPosition);
+
+        //if release touch, throw player
+        if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+        {
+            Throw();
+        }
+#else
         //get mouse position
         endPosition = player.cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -44,6 +62,7 @@ public class PlayerAimState : State
         {
             Throw();
         }
+#endif
     }
 
     void Throw()
